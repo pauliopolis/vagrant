@@ -19,11 +19,9 @@ Accidentally included secrets in your source code?
 * https://github.com/newren/git-filter-repo
 
 # Secrets
-Your RHN secrets ``./vagrant/virtualbox/.secrets.rb``
+Your RHN secrets ``./vagrant/[vmware|virtualbox]/.secrets.rb``
 
-``module Secrets
-
-        RHUSER = "<username>"
-        RHPASS = "<password>"
-        
-end``
+``module Secrets``
+        ``RHUSER = "<username>"``
+        ``RHPASS = "<password>"``     
+``end``

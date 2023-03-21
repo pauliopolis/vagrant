@@ -1,0 +1,7 @@
+.vagrant
+.secrets.rb
+.Vagrantfile.swp
+.build.un~
+vagrant.log
+git-filter-repo
+putty-keys

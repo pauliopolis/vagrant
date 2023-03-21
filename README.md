@@ -28,7 +28,7 @@ Harvest the private keys and sow them converted ready for use by PuTTY which is 
 
 # Links
 Accidentally included secrets in your source code? 
-* https://github.com/newren/git-filter-repo
+* [git-filter-repo](https://github.com/newren/git-filter-repo)
 
 # RHN Secrets
 ``$cat .secrets.rb``

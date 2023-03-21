@@ -17,8 +17,8 @@ Vagrant Synced Folders used to share Ansible playbooks provisioned via 'ansible_
   ``$echo "alias 'vagrant=/mnt/c/HashiCorp/Vagrant/bin/vagrant.exe'" >> ~/.bashrc``
 * Vagrant [Windows AMD64 2.3.4](https://releases.hashicorp.com/vagrant/2.3.4/vagrant_2.3.4_windows_amd64.msi)
 * Vagrant VMware Utility [Binary Download for Windows X86_64 1.0.21](https://releases.hashicorp.com/vagrant-vmware-utility/1.0.21/vagrant-vmware-utility_1.0.21_x86_64.msi)
-* VMware Workstation 16 Player (16.2.5)
-* Oracle VM VirtualBox Manager (7.0.6)
+* VMware Workstation 16 Player [16.2.5](https://docs.vmware.com/en/VMware-Workstation-Player-for-Windows/16.0/com.vmware.player.win.using.doc/GUID-B8509247-258C-4B11-8637-5DABACEA4965.html)
+* Oracle VM VirtualBox Manager [7.0.6](https://www.virtualbox.org/manual/ch01.html#intro-installing)
 
 # Tools
 ``$getips <provider>``

@@ -9,6 +9,6 @@ PROVIDERS :
 Vagrant Synced Folders used to share Ansible playbooks provisioned via 'ansible_local'
 
 # Tools
-* getips <provider>
+``getips <provider>
   
-* getprivkeys <provider>
+``getprivkeys <provider>

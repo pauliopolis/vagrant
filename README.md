@@ -20,9 +20,13 @@ Accidentally included secrets in your source code?
 
 # Secrets
 Your RHN secrets ``./vagrant/virtualbox/.secrets.rb``
+
 ``
 module Secrets
+
         RHUSER = "<username>"
+        
         RHPASS = "<password>"
+        
 end
 ``

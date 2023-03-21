@@ -1,5 +1,5 @@
 .vagrant
-.secrets.rb.actual
+.secrets.rb
 .Vagrantfile.swp
 .build.un~
 vagrant.log

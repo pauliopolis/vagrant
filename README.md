@@ -7,3 +7,7 @@ PROVIDERS :
 * vmware_desktop
 
 Vagrant Synced Folders used to share Ansible playbooks provisioned via 'ansible_local'
+
+# Tools
+getips <provider>
+getprivkeys <provider>

@@ -13,6 +13,7 @@ Vagrant Synced Folders used to share Ansible playbooks provisioned via 'ansible_
 * Windows Services for Linux 2 (1.1.3.0)
   * Oracle Linux 8.5
   
+  
   ``$echo "alias 'vagrant=/mnt/c/HashiCorp/Vagrant/bin/vagrant.exe'" >> ~/.bashrc``
 * Vagrant (Windows AMD64 2.3.4)
 * Vagrant VMware Utility (Binary Download for Windows X86_64 1.0.21)

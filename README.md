@@ -10,4 +10,5 @@ Vagrant Synced Folders used to share Ansible playbooks provisioned via 'ansible_
 
 # Tools
 getips <provider>
+  
 getprivkeys <provider>

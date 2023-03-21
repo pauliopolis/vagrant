@@ -2,7 +2,7 @@ BOX = "generic/rhel8"
 NODES = 3
 RAM = 2048
 
-require_relative '.secrets.rb'
+require_relative '../.secrets.rb'
 include Secrets
 
 unregister_script = %{

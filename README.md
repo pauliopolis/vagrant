@@ -1,9 +1,9 @@
-Vagrant projects :
+# Vagrant Project : 
 
-VMWARE (Workstation Player)
-TODO : ORACLE (VM Virtual Box)
+BOX : generic/rhel8 (4.2.14)
 
-All nodes have vagrant/share (../share) shared at /mnt/SHARE
-All nodes have private network 192.168.1.#{i + 10}
-All nodes are registered on https://access.redhat.com/management/systems
-All nodes are fully updated
+PROVIDERS : 
+* virtualbox
+* vmware_desktop
+
+Vagrant Synced Folders used to share Ansible playbooks provisioned via 'ansible_local'

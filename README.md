@@ -8,6 +8,10 @@ PROVIDERS :
 
 Vagrant Synced Folders used to share Ansible playbooks provisioned via 'ansible_local'
 
+# ENV
+* Windows 10 Home Edition 
+*
+
 # Tools
 ``$getips <provider>``
   

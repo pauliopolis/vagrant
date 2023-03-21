@@ -18,7 +18,7 @@ Harvest the private keys and sow them converted ready for use by PuTTY which is 
 Accidentally included secrets in your source code? 
 * https://github.com/newren/git-filter-repo
 
-# Secrets
-Your RHN secrets ``./vagrant/[vmware|virtualbox]/.secrets.rb``
+# RHN Secrets
+``$cat ./vagrant/[vmware|virtualbox]/.secrets.rb``
 
 ![image](https://user-images.githubusercontent.com/14337141/226586884-51f173bd-2807-4c40-8d96-d1181dc58b91.png)

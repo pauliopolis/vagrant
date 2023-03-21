@@ -1,0 +1,37 @@
+#!/bin/bash
+
+PROVIDER=$1
+PROG=$(basename $0)
+VAGRANT=$(whereis vagrant | cut -f2 -d\: )
+PWD=$(pwd)
+
+if [ -z "$*" ]
+then
+	echo "USAGE: $PROG [virtualbox|vmware|roboxes]"
+	exit
+fi
+
+if [ "$PWD" != "/mnt/c/users/user/desktop/vagrant" ]
+then
+	echo "USAGE: $PROG [virtualbox|vmware|roboxes]"
+	echo "ERROR: run $PROG in vagrant dir"
+	exit
+fi
+
+echo "Running $PROG : $PROVIDER"
+
+cd $PWD
+cd $PROVIDER
+i=1
+
+COUNT=$(grep ^NODES Vagrantfile | awk -F\= '{print$2}')
+
+until [ $i -gt $COUNT ]
+do
+	echo -n "node$i : " 
+	$VAGRANT ssh -c 'ifconfig eth0 | grep -w inet' node$i | awk '{print "eth0: public  :",$2}' 
+	echo -n "node$i : " 
+	$VAGRANT ssh -c 'ifconfig eth1 | grep -w inet' node$i | awk '{print "eth1: private :",$2}' 
+	echo
+ 	((i=i+1))
+done

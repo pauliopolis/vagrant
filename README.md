@@ -10,7 +10,7 @@ Vagrant Synced Folders used to share Ansible playbooks provisioned via 'ansible_
 
 # Environment
 * Windows 10 Home Edition 
-* Windows Services for Linux 2 (1.1.3.0)
+* Windows Services for Linux 2 [1.1.3.0](https://learn.microsoft.com/en-us/windows/wsl/install)
   * Oracle Linux 8.5
   
   

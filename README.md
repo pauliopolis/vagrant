@@ -23,6 +23,7 @@ Your RHN secrets ``./vagrant/[vmware|virtualbox]/.secrets.rb``
 
 ``module Secrets
 
+
         RHUSER = "<username>"
         RHPASS = "<password>"   
 end``

@@ -7,13 +7,13 @@ PWD=$(pwd)
 
 if [ -z "$*" ]
 then
-	echo "USAGE: $PROG [virtualbox|vmware|roboxes]"
+	echo "USAGE: $PROG [virtualbox|vmware]"
 	exit
 fi
 
 if [ "$PWD" != "/mnt/c/users/user/desktop/vagrant" ]
 then
-	echo "USAGE: $PROG [virtualbox|vmware|roboxes]"
+	echo "USAGE: $PROG [virtualbox|vmware]"
 	echo "ERROR: run $PROG in vagrant dir"
 	exit
 fi

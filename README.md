@@ -1,6 +1,6 @@
 # Vagrant Project : 
 
-BOX : generic/rhel8 (4.2.14)
+BOX : generic/rhel8 [4.2.14](https://app.vagrantup.com/boxes/search)
 
 PROVIDERS : 
 * virtualbox

@@ -10,7 +10,12 @@ Vagrant Synced Folders used to share Ansible playbooks provisioned via 'ansible_
 
 # ENV
 * Windows 10 Home Edition 
-*
+* Windows Services for Linux 2 (1.1.3.0)
+  * Oracle Linux 8.5
+* Vagrant (Windows AMD64 2.3.4)
+* Vagrant VMware Utility (Binary Download for Windows X86_64 1.0.21)
+* VMware Workstation 16 Player (16.2.5)
+* Oracle VM VirtualBox Manager (7.0.6)
 
 # Tools
 ``$getips <provider>``

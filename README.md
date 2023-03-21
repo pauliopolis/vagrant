@@ -24,6 +24,7 @@ Vagrant Synced Folders used to share Ansible playbooks provisioned via 'ansible_
 ``$getips <provider>``
   
 ``$getprivkeys <provider>``
+
 Harvest the private keys and sow them converted ready for use by PuTTY which is much more conventient/speedy than using ``vagrant ssh``
 
 # Links

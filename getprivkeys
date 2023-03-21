@@ -1,7 +1,14 @@
 #!/bin/bash
 
 cd /mnt/c/users/user/desktop/vagrant
+
+if [ ! -d putty-keys ]
+then
+	mkdir -p putty-keys/vmware putty-keys/virtualbox
+fi
+
 cd vmware/.vagrant/machines
+
 for node in $(ls)
 do
 	cp -f $node/vmware_desktop/private_key ../../../putty-keys/vmware/$node-putty-key

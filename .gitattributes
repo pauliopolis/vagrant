@@ -1,0 +1,4 @@
+* linguist-vendored
+
+Vagrantfile linguist-language=Ruby
+ansible/* linguist-language=YAML

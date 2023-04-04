@@ -1,0 +1,32 @@
+#!/bin/bash
+
+clear
+echo "Removing current custom GOLD box and adding latest"
+echo
+
+LOCATION="D:\\Virtual_Machines\\GOLD"
+NAME="gold/rhel8"
+BOX="$LOCATION\\gold-virtualbox-rhel8.box"
+VERSION="1.0.0"
+
+VAGRANT="/mnt/c/HashiCorp/Vagrant/bin/vagrant.exe"
+
+echo "Current BOX list"
+$VAGRANT box list
+echo
+
+echo "Removing $NAME" 
+echo
+$VAGRANT box remove $NAME
+echo
+echo "Current BOX list"
+echo
+$VAGRANT box list
+echo
+echo "Adding $NAME $BOX"
+echo
+$VAGRANT box add --name $NAME $BOX
+echo
+$VAGRANT box list
+echo
+

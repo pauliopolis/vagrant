@@ -58,7 +58,7 @@ or
 ``$vagrant box add metadata-http.json``
 
 
-Alternatively - upload the BOX to Vagrant Cloud
+Alternatively - upload the BOX to [Vagrant Cloud](https://app.vagrantup.com/boxes/search)
 
 
 ``$vagrant box add pauliopolis/rhel8``

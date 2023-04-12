@@ -38,7 +38,7 @@ Accidentally included secrets in your source code?
 
 # Vagrant Add Box
 
-``$python3 -m http.server 8000 &
+``$python3 -m http.server 8000 &``
 
 Add the BOX locally
 
@@ -53,7 +53,7 @@ This method won't allow you to specify a version so use a metadata.json instead
 or
 
 
-``$python3 -m http.server 8000 &
+``$python3 -m http.server 8000 &``
 
 ``$vagrant box add metadata-http.json``
 

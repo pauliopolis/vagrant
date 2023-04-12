@@ -35,3 +35,31 @@ Accidentally included secrets in your source code?
 ``$cat .secrets.rb``
 
 ![image](https://user-images.githubusercontent.com/14337141/226586884-51f173bd-2807-4c40-8d96-d1181dc58b91.png)
+
+# Vagrant Add Box
+
+``$python3 -m http.server 8000 &
+
+Add the BOX locally
+
+``$cd /mnt/d/Virtual_Machines/GOLD`` 
+
+``$vagrant box add --name pauliopolis/rhel8 gold-virtualbox-rhel8.box``
+
+This method won't allow you to specify a version so use a metadata.json instead
+
+``$vagrant box add metadata-file.json``
+
+or
+
+
+``$python3 -m http.server 8000 &
+
+``$vagrant box add metadata-http.json``
+
+
+Alternatively - upload the BOX to Vagrant Cloud
+
+
+``$vagrant box add pauliopolis/rhel8``
+

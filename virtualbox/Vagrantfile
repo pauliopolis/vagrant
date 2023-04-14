@@ -2,6 +2,7 @@
 # vi: set ft=ruby:
 
 BOX = "generic/rhel8"
+VERSION = "4.2.14"
 NODES = 1
 RAM = 2048
 CPUS = 2
@@ -18,6 +19,8 @@ fi
 Vagrant.configure("2") do |config|
   (1..NODES).each do |i|
     config.vm.define "node#{i}" do |node|
+
+      node.vbguest.auto_update = false if Vagrant.has_plugin?("vagrant-vbguest")
 
       node.vm.provision "subscription-manager", type: "shell" do |subscribe|
         subscribe.inline = "sudo subscription-manager register --force --username=#{RHUSER} --password=#{RHPASS}"

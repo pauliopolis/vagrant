@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
       node.vbguest.auto_update = false if Vagrant.has_plugin?("vagrant-vbguest")
 
       node.vm.provision "subscription-manager", type: "shell" do |subscribe|
-        subscribe.inline = "sudo subscription-manager register --force --username=#{RHUSER} --password=#{RHPASS}"
+        subscribe.inline = "subscription-manager register --force --username=#{RHUSER} --password=#{RHPASS}"
       end # node.vm.provision
 
       node.vm.provision "dnf", type: "ansible_local", run: "always" do |dnf|

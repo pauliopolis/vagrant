@@ -1,0 +1,28 @@
+---
+
+- name: Ansible VBoxAdditions Re-Install
+  hosts: all
+  gather_facts: false
+  become: yes
+  become_user: root
+
+  tasks: 
+
+    - name: Install Ansible-Galaxy Posix Collection
+      shell: ansible-galaxy collection install ansible.posix
+  
+    - name: Mount ISO
+      ansible.posix.mount:
+        path: /mnt
+        src: /home/vagrant/VBoxGuestAdditions.iso
+        fstype: iso9660
+        opts: ro
+        state: mounted
+
+    - name: Re-Install VBoxLinuxAdditions
+      shell: /mnt/VBoxLinuxAdditions.run no_setup
+
+    - name: Unmount ISO
+      ansible.posix.mount:
+        path: /mnt
+        state: absent

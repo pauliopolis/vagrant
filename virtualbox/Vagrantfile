@@ -32,6 +32,12 @@ Vagrant.configure("2") do |config|
         dnf.compatibility_mode = "2.0"
       end # node.vm.provision
 
+      node.vm.provision "vboxguestadditions", type: "ansible_local" do |vboxguestadditions|
+        vboxguestadditions.playbook = "vboxguestadditions.yml"
+        vboxguestadditions.verbose = true
+        vboxguestadditions.compatibility_mode = "2.0"
+      end # node.vm.provision
+
       node.trigger.before :destroy do |unregister|
         unregister.name = "Unregister VM"
         unregister.info = "Unregistering this VM from RedHat Subscription Manager..."

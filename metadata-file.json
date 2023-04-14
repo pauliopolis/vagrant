@@ -3,12 +3,12 @@
   "description": "Pauliopolis RHEL 8.6",
   "versions": [
     {
-      "version": "1.0.1",
+      "version": "1.0.2",
       "providers": [
         {
           "name": "virtualbox",
           "url": "file://D:\\\Virtual_Machines/GOLD/gold-virtualbox-rhel8.box",
-          "checksum": "6da0ca75e1953036ee070711f818c524",
+          "checksum": "414681d44587a442e3abab5b8c6ec32e",
           "checksum_type": "md5"
         }
       ]

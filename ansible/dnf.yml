@@ -11,6 +11,3 @@
       ansible.builtin.dnf:
         name: "*"
         state: latest
-
-    - name: REBOOT Check
-      ansible.builtin.shell: dnf needs-restarting -r || systemctl reboot

@@ -4,7 +4,8 @@ BOX : generic/rhel8 [4.2.14](https://app.vagrantup.com/boxes/search)
 
 PROVIDERS : 
 * virtualbox
-* vmware_desktop
+* vmware
+* custom
 
 Vagrant Synced Folders used to share Ansible playbooks provisioned via 'ansible_local'
 

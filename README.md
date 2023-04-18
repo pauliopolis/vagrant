@@ -63,3 +63,14 @@ Alternatively - upload the BOX to [Vagrant Cloud](https://app.vagrantup.com/boxe
 
 ``$vagrant box add pauliopolis/rhel8``
 
+# Vagrant Usage
+
+``cd vagrant/custom``
+virtualbox & vmware project Vagrantfiles differ and remain works in progress currently
+
+``$vagrant up``
+
+``$vagrant provision --provision-with update``
+
+``$vagrant reload`` In order to boot with the previously updated kernel & VBox Guest Additions
+

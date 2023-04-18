@@ -74,3 +74,10 @@ virtualbox & vmware project Vagrantfiles differ and remain works in progress cur
 
 ``$vagrant reload`` In order to boot with the previously updated kernel & VBox Guest Additions
 
+# Examples
+
+``$vagrant up``
+
+![image](https://user-images.githubusercontent.com/14337141/232779138-884808cf-692e-41a7-86f6-2ea9e9048040.png)
+
+

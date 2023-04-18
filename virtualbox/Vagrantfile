@@ -22,21 +22,28 @@ Vagrant.configure("2") do |config|
 
       node.vbguest.auto_update = false if Vagrant.has_plugin?("vagrant-vbguest")
 
+      if Vagrant.has_plugin?('vagrant-registration')
+        node.registration.username = "#{RHUSER}"
+        node.registration.password = "#{RHPASS}"
+        node.registration.skip = true
+        node.registration.unregister_on_halt = false
+      end
+
       node.vm.provision "subscription-manager", type: "shell" do |subscribe|
         subscribe.inline = "subscription-manager register --force --username=#{RHUSER} --password=#{RHPASS}"
       end # node.vm.provision
 
-      node.vm.provision "dnf", type: "ansible_local" do |dnf|
-        dnf.playbook = "dnf.yml" 
-        dnf.verbose = false
+      node.vm.provision "dnf", type: "ansible_local", run: "never" do |dnf|
+        dnf.playbook = "dnf.yml"
+        dnf.verbose = true
         dnf.compatibility_mode = "2.0"
       end # node.vm.provision
 
-      node.vm.provision "vboxguestadditions", type: "ansible_local" do |vboxguestadditions|
-        vboxguestadditions.playbook = "vboxguestadditions.yml"
-        vboxguestadditions.verbose = true
-        vboxguestadditions.compatibility_mode = "2.0"
-      end # node.vm.provision
+      #node.vm.provision "vboxguestadditions", type: "ansible_local" do |vboxguestadditions|
+      #  vboxguestadditions.playbook = "vboxguestadditions.yml"
+      #  vboxguestadditions.verbose = true
+      #  vboxguestadditions.compatibility_mode = "2.0"
+      #end # node.vm.provision
 
       node.trigger.before :destroy do |unregister|
         unregister.name = "Unregister VM"

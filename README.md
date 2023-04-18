@@ -1,5 +1,7 @@
 # Vagrant Project : 
 
+[![spotify-github-profile](https://spotify-github-profile.vercel.app/api/view?uid=1148941328&cover_image=true&theme=default&show_offline=false&background_color=121212&interchange=false&bar_color_cover=true)](https://spotify-github-profile.vercel.app/api/view?uid=1148941328&redirect=true)
+
 BOX : generic/rhel8 [4.2.14](https://app.vagrantup.com/boxes/search)
 
 PROVIDERS : 
@@ -80,5 +82,3 @@ virtualbox & vmware project Vagrantfiles differ and remain works in progress cur
 ``$vagrant up``
 
 ![image](https://user-images.githubusercontent.com/14337141/232779138-884808cf-692e-41a7-86f6-2ea9e9048040.png)
-
-

@@ -20,8 +20,3 @@
 
     - name: Update VBoxLinuxAdditions
       ansible.builtin.shell: /mnt/VBoxLinuxAdditions.run --nox11 || /bin/true
-
-    - name: Unmount VBoxGuestAdditions ISO
-      ansible.posix.mount:
-        path: /mnt
-        state: unmounted

@@ -73,7 +73,7 @@ virtualbox & vmware project Vagrantfiles differ and remain works in progress cur
 
 ``$vagrant up``
 
-``$vagrant provision --provision-with update,certs,vga``
+``$vagrant provision --provision-with update,certs,vga,cleanup``
 
 ``$vagrant reload`` In order to boot with the previously updated kernel & VBox Guest Additions
 
@@ -81,4 +81,33 @@ virtualbox & vmware project Vagrantfiles differ and remain works in progress cur
 
 ``$vagrant up``
 
-![image](https://user-images.githubusercontent.com/14337141/232779138-884808cf-692e-41a7-86f6-2ea9e9048040.png)
+![image](https://user-images.githubusercontent.com/14337141/233087797-b93a4198-f003-402e-b0ea-f8e6328ea4db.png)
+
+Close and re-open Oracle VM VirtualBox Manager to see RAM Usage (indicating Guest Additions)
+
+![image](https://user-images.githubusercontent.com/14337141/233069593-0400b5a1-0df5-4b60-a25b-c6e284bdd925.png)
+
+Guest still shows Packer hostname at this stage even though hostname has been set only because it has not yet been rebooted or logged into.
+
+![image](https://user-images.githubusercontent.com/14337141/233070051-46a09b8f-a4e2-4f68-9638-bb777197de6c.png)
+
+``$vagrant provision --provision-with update,certs,vga,cleanup``
+
+![image](https://user-images.githubusercontent.com/14337141/233112408-986e92c4-37f0-44fc-b763-be03c18d7647.png)
+
+``$vagrant reload``
+
+![image](https://user-images.githubusercontent.com/14337141/233114460-30d3441e-f9bc-41e9-939b-b2fb7620f710.png)
+
+Close and re-open Oracle VM VirtualBox Manager to see RAM Usage (indicating Guest Additions) - Observe new kernel version
+
+![image](https://user-images.githubusercontent.com/14337141/233114721-cc5260bc-0ace-4096-8e7b-b2451b467353.png)
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,18 @@
+---
+
+- name: Cleanup Tasks
+  hosts: all
+  gather_facts: false
+  become: true
+  
+  tasks: 
+
+    - name: Unmount VBoxGuestAdditions ISO
+      ansible.posix.mount:
+        path: /mnt
+        state: absent
+
+    - name: Delete RHSM Creds
+      ansible.builtin.file:
+        path: /tmp/vagrant-shell
+        state: absent

@@ -4,9 +4,10 @@ cd /mnt/c/users/user/desktop/vagrant
 
 if [ ! -d putty-keys ]
 then
-	mkdir -p putty-keys/vmware putty-keys/virtualbox
+	mkdir -p putty-keys/custom putty-keys/vmware putty-keys/virtualbox
 fi
 
+cd /mnt/c/users/user/desktop/vagrant
 cd vmware/.vagrant/machines
 
 for node in $(ls)
@@ -18,6 +19,7 @@ done
 
 cd /mnt/c/users/user/desktop/vagrant
 cd virtualbox/.vagrant/machines
+
 for node in $(ls)
 do
 	cp -f $node/virtualbox/private_key ../../../putty-keys/virtualbox/$node-putty-key
@@ -25,3 +27,12 @@ do
 	rm -f ../../../putty-keys/virtualbox/$node-putty-key
 done
 
+cd /mnt/c/users/user/desktop/vagrant
+cd custom/.vagrant/machines
+
+for node in $(ls)
+do
+	cp -f $node/virtualbox/private_key ../../../putty-keys/virtualbox/$node-putty-key
+	puttygen ../../../putty-keys/virtualbox/$node-putty-key -o ../../../putty-keys/virtualbox/$node-putty-key.ppk
+	rm -f ../../../putty-keys/virtualbox/$node-putty-key
+done

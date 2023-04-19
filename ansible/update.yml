@@ -1,14 +1,13 @@
 ---
 
-- name: Ansible DNF Update Playbook
+- name: DNF Update Tasks
   hosts: all
   gather_facts: false
   become: true
   
   tasks: 
-  
+
     - name: DNF Update
       ansible.builtin.dnf:
         name: "*"
         state: latest
-

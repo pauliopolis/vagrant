@@ -7,7 +7,7 @@ PWD=$(pwd)
 
 if [ -z "$*" ]
 then
-	echo "USAGE: $PROG [virtualbox|vmware]"
+	echo "USAGE: $PROG [virtualbox|vmware|custom]"
 	exit
 fi
 
@@ -29,9 +29,17 @@ COUNT=$(grep ^NODES Vagrantfile | awk -F\= '{print$2}')
 until [ $i -gt $COUNT ]
 do
 	echo -n "node$i : " 
-	$VAGRANT ssh -c 'ifconfig eth0 | grep -w inet' node$i | awk '{print "eth0: public  :",$2}' 
+	if [ $PROVIDER == "custom" ] ; then
+		$VAGRANT ssh -c 'ifconfig enp0s3 | grep -w inet' node$i | awk '{print "enp0s3: public  :",$2}' 
+	else
+		$VAGRANT ssh -c 'ifconfig eth0 | grep -w inet' node$i | awk '{print "eth0: public  :",$2}' 
+	fi
 	echo -n "node$i : " 
-	$VAGRANT ssh -c 'ifconfig eth1 | grep -w inet' node$i | awk '{print "eth1: private :",$2}' 
+	if [ $PROVIDER == "custom" ] ; then
+		$VAGRANT ssh -c 'ifconfig enp0s8 | grep -w inet' node$i | awk '{print "enp0s8: private :",$2}' 
+	else
+		$VAGRANT ssh -c 'ifconfig eth1 | grep -w inet' node$i | awk '{print "eth1: private :",$2}' 
+	fi
 	echo
  	((i=i+1))
 done

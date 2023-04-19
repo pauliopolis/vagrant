@@ -1,0 +1,14 @@
+---
+
+- name: CERTS Refresh Tasks
+  hosts: all
+  gather_facts: false
+  become: true
+  
+  tasks: 
+
+    - name: Update CA Certificates
+      ansible.builtin.shell: update-ca-trust
+      #register: result
+      #until: result is not failed
+      #retries: 5

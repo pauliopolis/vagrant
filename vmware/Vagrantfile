@@ -2,7 +2,7 @@
 # vi: set ft=ruby:
 
 BOX = "generic/rhel8"
-NODES = 3
+NODES = 1
 RAM = 2048
 
 require_relative '../.secrets.rb'
@@ -18,13 +18,22 @@ Vagrant.configure("2") do |config|
   (1..NODES).each do |i|
     config.vm.define "node#{i}" do |node|
 
+      node.vbguest.auto_update = false if Vagrant.has_plugin?("vagrant-vbguest")
+
+      if Vagrant.has_plugin?('vagrant-registration')
+	      node.registration.username = "#{RHUSER}"
+	      node.registration.password = "#{RHPASS}"
+	      node.registration.skip = true
+	      node.registration.unregister_on_halt = false
+      end
+
       node.vm.provision "subscription-manager", type: "shell" do |subscribe|
         subscribe.inline = "sudo subscription-manager register --force --username=#{RHUSER} --password=#{RHPASS}"
       end # node.vm.provision
 
       node.vm.provision "dnf", type: "ansible_local", run: "always" do |dnf|
         dnf.playbook = "dnf.yml" 
-        dnf.verbose = false
+        dnf.verbose = true
         dnf.compatibility_mode = "2.0"
       end # node.vm.provision
 

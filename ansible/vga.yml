@@ -1,0 +1,22 @@
+---
+
+- name: VBoxGuestAdditions Update Tasks
+  hosts: all
+  gather_facts: false
+  become: true
+  
+  tasks: 
+
+    - name: Install Ansible-Galaxy Posix Collection for ROOT
+      ansible.builtin.shell: ansible-galaxy collection install ansible.posix 
+  
+    - name: Mount VBoxGuestAdditions ISO
+      ansible.posix.mount:
+        path: /mnt
+        src: /home/vagrant/VBoxGuestAdditions.iso
+        fstype: iso9660
+        opts: ro
+        state: mounted
+
+    - name: Update VBoxLinuxAdditions
+      ansible.builtin.shell: /mnt/VBoxLinuxAdditions.run --nox11 || /bin/true

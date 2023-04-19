@@ -73,7 +73,7 @@ virtualbox & vmware project Vagrantfiles differ and remain works in progress cur
 
 ``$vagrant up``
 
-``$vagrant provision --provision-with update``
+``$vagrant provision --provision-with update,certs,vga``
 
 ``$vagrant reload`` In order to boot with the previously updated kernel & VBox Guest Additions
 

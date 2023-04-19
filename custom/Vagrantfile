@@ -40,6 +40,19 @@ Vagrant.configure("2") do |config|
         update.compatibility_mode = "2.0"
       end # node.vm.provision
 
+      node.vm.provision "certs", type: "ansible_local", run: "never" do |certs|
+        certs.playbook = "certs.yml"
+        certs.verbose = false
+        certs.compatibility_mode = "2.0"
+      end # node.vm.provision
+
+      node.vm.provision "vga", type: "ansible_local", run: "never" do |vga|
+        vga.playbook = "vga.yml"
+        vga.verbose = false
+        vga.compatibility_mode = "2.0"
+      end # node.vm.provision
+
+
       node.trigger.before :destroy do |unregister|
         unregister.name = "Unregister VM"
         unregister.info = "Unregistering this VM from RedHat Subscription Manager..."

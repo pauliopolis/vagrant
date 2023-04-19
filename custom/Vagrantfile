@@ -30,10 +30,6 @@ Vagrant.configure("2") do |config|
         node.registration.unregister_on_halt = false
       end
 
-      node.vm.provision "subscription-manager", type: "shell" do |subscribe|
-        subscribe.inline = "subscription-manager register --force --username=#{RHUSER} --password=#{RHPASS}"
-      end # node.vm.provision
-
       node.vm.provision "update", type: "ansible_local", run: "never" do |update|
         update.playbook = "update.yml"
         update.verbose = false
@@ -50,6 +46,12 @@ Vagrant.configure("2") do |config|
         vga.playbook = "vga.yml"
         vga.verbose = false
         vga.compatibility_mode = "2.0"
+      end # node.vm.provision
+
+      node.vm.provision "cleanup", type: "ansible_local", run: "never" do |cleanup|
+        cleanup.playbook = "cleanup.yml"
+        cleanup.verbose = false
+        cleanup.compatibility_mode = "2.0"
       end # node.vm.provision
 
 

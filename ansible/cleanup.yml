@@ -10,4 +10,9 @@
     - name: Unmount VBoxGuestAdditions ISO
       ansible.posix.mount:
         path: /mnt
-        state: unmounted
+        state: absent
+
+    - name: Delete RHSM Creds
+      ansible.builtin.file:
+        path: /tmp/vagrant-shell
+        state: absent

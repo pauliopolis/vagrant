@@ -13,7 +13,7 @@
     - name: Mount VBoxGuestAdditions ISO
       ansible.posix.mount:
         path: /mnt
-        src: /home/vagrant/VBoxGuestAdditions.iso
+        src: /oracle/VBoxGuestAdditions.iso
         fstype: iso9660
         opts: ro
         state: mounted

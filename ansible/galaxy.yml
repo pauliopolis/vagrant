@@ -1,0 +1,15 @@
+---
+
+- name: Ansible Galaxy collection installation Tasks
+  hosts: all
+  gather_facts: false
+  
+  tasks: 
+
+    - name: Install Ansible-Galaxy Posix Collection for ROOT
+      ansible.builtin.shell: ansible-galaxy collection install ansible.posix
+      become: true
+
+    - name: Install Ansible-Galaxy Posix Collection for Vagrant
+      ansible.builtin.shell: ansible-galaxy collection install ansible.posix
+      become: false

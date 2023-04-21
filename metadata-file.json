@@ -8,7 +8,7 @@
         {
           "name": "virtualbox",
           "url": "file://D:\\\Virtual_Machines/GOLD/gold-virtualbox-rhel8.box",
-          "checksum": "dcc388582bf3d781db6f9cfa789da3c7",
+          "checksum": "ddd05c88210293ee6ea8c94c9be67a43",
           "checksum_type": "md5"
         }
       ]

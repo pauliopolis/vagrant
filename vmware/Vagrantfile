@@ -1,9 +1,11 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby:
 
-BOX = "generic/rhel8"
+BOX = "pauliopolis/rhel8"
+VERSION = "1.0.3"
 NODES = 1
 RAM = 2048
+CPUS = 2
 
 require_relative '../.secrets.rb'
 include Secrets
@@ -21,20 +23,44 @@ Vagrant.configure("2") do |config|
       node.vbguest.auto_update = false if Vagrant.has_plugin?("vagrant-vbguest")
 
       if Vagrant.has_plugin?('vagrant-registration')
-	      node.registration.username = "#{RHUSER}"
-	      node.registration.password = "#{RHPASS}"
-	      node.registration.skip = true
-	      node.registration.unregister_on_halt = false
+        node.registration.username = "#{RHUSER}"
+        node.registration.password = "#{RHPASS}"
+        node.registration.skip = false
+        node.registration.unregister_on_halt = false
       end
 
       node.vm.provision "subscription-manager", type: "shell" do |subscribe|
-        subscribe.inline = "sudo subscription-manager register --force --username=#{RHUSER} --password=#{RHPASS}"
+        subscribe.inline = "subscription-manager register --force --username=#{RHUSER} --password=#{RHPASS}"
       end # node.vm.provision
 
-      node.vm.provision "dnf", type: "ansible_local", run: "always" do |dnf|
-        dnf.playbook = "dnf.yml" 
-        dnf.verbose = true
-        dnf.compatibility_mode = "2.0"
+      node.vm.provision "update", type: "ansible_local", run: "never" do |update|
+        update.playbook = "/ansible/update.yml"
+        update.verbose = false
+        update.compatibility_mode = "2.0"
+      end # node.vm.provision
+
+      node.vm.provision "certs", type: "ansible_local", run: "never" do |certs|
+        certs.playbook = "/ansible/certs.yml"
+        certs.verbose = false
+        certs.compatibility_mode = "2.0"
+      end # node.vm.provision
+
+      node.vm.provision "galaxy", type: "ansible_local", run: "never" do |galaxy|
+        galaxy.playbook = "/ansible/galaxy.yml"
+        galaxy.verbose = false
+        galaxy.compatibility_mode = "2.0"
+      end # node.vm.provision
+
+      node.vm.provision "vga", type: "ansible_local", run: "never" do |vga|
+        vga.playbook = "/ansible/vga.yml"
+        vga.verbose = false
+        vga.compatibility_mode = "2.0"
+      end # node.vm.provision
+
+      node.vm.provision "cleanup", type: "ansible_local", run: "never" do |cleanup|
+        cleanup.playbook = "/ansible/cleanup.yml"
+        cleanup.verbose = false
+        cleanup.compatibility_mode = "2.0"
       end # node.vm.provision
 
       node.trigger.before :destroy do |unregister|
@@ -48,14 +74,16 @@ Vagrant.configure("2") do |config|
       node.vm.provider "vmware_desktop" do |vmware|
         vmware.gui = false
         vmware.memory = RAM
+        vmware.cpus = CPUS
         vmware.vmx['displayname'] = "vm:node#{i}"
         vmware.vmx['guestos'] = "rhel8-64"
       end # node.vm.provider
 
       node.vm.box = BOX
+      node.vm.box = VERSION
       node.vm.hostname = "vm-node#{i}"
       node.vm.boot_timeout = 1500
-      node.vm.synced_folder "../ansible", "/vagrant"
+      node.vm.synced_folder "../ansible", "/ansible"
       node.vm.network "private_network", ip: "192.168.2.#{i + 10}"
 
     end # config.vm.define

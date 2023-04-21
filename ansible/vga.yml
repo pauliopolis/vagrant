@@ -5,15 +5,12 @@
   gather_facts: false
   become: true
   
-  tasks: 
+  tasks:
 
-    - name: Install Ansible-Galaxy Posix Collection for ROOT
-      ansible.builtin.shell: ansible-galaxy collection install ansible.posix 
-  
     - name: Mount VBoxGuestAdditions ISO
       ansible.posix.mount:
         path: /mnt
-        src: /oracle/VBoxGuestAdditions.iso
+        src: /home/vagrant/VBoxGuestAdditions.iso
         fstype: iso9660
         opts: ro
         state: mounted

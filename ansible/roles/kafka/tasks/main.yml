@@ -30,7 +30,6 @@
       mode: 0755
       owner: kafka
       group: kafka
-    register: result
 
   - name: Remove file (delete file)
     ansible.builtin.file:
@@ -48,6 +47,16 @@
       src: templates/zookeeper.service.j2
       dest: /etc/systemd/system/zookeeper.service
 
+  - name: Install ZK MYID
+    ansible.builtin.template:
+      src: templates/myid.j2
+      dest: /tmp/zookeeper/myid
+
+  - name: Install ZK properties
+    ansible.builtin.template:
+      src: templates/zookeeper.properties.j2
+      dest: /opt/kafka/config/zookeeper.properties
+
   - name: Start Apache Zookeeper service
     ansible.builtin.systemd:
       name: zookeeper
@@ -59,24 +68,26 @@
       src: templates/kafka.service.j2
       dest: /etc/systemd/system/kafka.service
 
-  - name: Start Apache Kafka service
-    ansible.builtin.systemd:
-      name: kafka
+#  - name: Start Apache Kafka service
+#    ansible.builtin.systemd:
+#      name: kafka
+#      state: started
+#      daemon_reload: true
+
+  - name: Validating zookeeper is up and listening on port 2181
+    wait_for:
+      host: localhost
+      port: 2181
+      delay: 10
+      timeout: 30
       state: started
-      daemon_reload: true
+      msg: "Zookeeper does not seem to be running"
 
-  - name: Verify Zookeeper Service Status
-    ansible.builtin.systemd:
-      name: 'zookeeper.service'
-    register: zookeeper_status
-
-  - debug:
-      var: zookeeper_status.status.ActiveState
-
-  - name: Verify Kafka Service Status
-    ansible.builtin.systemd:
-      name: 'kafka.service'
-    register: kafka_service
-
-  - debug:
-      var: kafka_service.status.ActiveState
+#  - name: Validating kafka is up and listening on port 9092
+#    wait_for:
+#      host: localhost
+#      port: 9092
+#      delay: 10
+#      timeout: 30
+#      state: started
+#      msg: "Kafka does not seem to be running"

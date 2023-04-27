@@ -1,0 +1,13 @@
+dataDir=/tmp/zookeeper
+clientPort=2181
+maxClientCnxns=0
+admin.enableServer=false
+# admin.serverPort=8080
+
+ticktime=2000
+initLimit=2
+syncLimit=2
+
+{% for host in groups['all'] %}
+server.{{ loop.index }}=192.168.1.1{{ loop.index }}:2888:3888
+{% endfor %}

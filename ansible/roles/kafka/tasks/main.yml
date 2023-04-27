@@ -1,0 +1,82 @@
+---
+
+  - name: Install Java OpenJDK 17 Runtime Environment
+    ansible.builtin.dnf:
+      name: java-17-openjdk
+      state: latest
+
+  - name: Download KAFKA
+    ansible.builtin.get_url:
+      url: https://dlcdn.apache.org/kafka/3.4.0/kafka_2.13-3.4.0.tgz
+      dest: /opt/kafka_2.13-3.4.0.tgz
+      checksum: sha512:2c405149c065627ce2125088dfcce0a4dc23aebaa72c1157736d5829cb5cbef273c0915ec55d2d8ba38e5e0524f0720f43e07d7d677439cd2ac7bea618caa65b
+
+  - name: Create Kafka Group
+    ansible.builtin.group:
+      name: kafka
+      state: present
+
+  - name: Create Kafka User
+    ansible.builtin.user:
+      name: kafka
+      comment: Kafka Service Account
+      group: kafka
+      state: present
+
+  - name: Uncompress KAFKA tarball
+    ansible.builtin.unarchive:
+      src: /opt/kafka_2.13-3.4.0.tgz
+      dest: /opt
+      mode: 0755
+      owner: kafka
+      group: kafka
+    register: result
+
+  - name: Remove file (delete file)
+    ansible.builtin.file:
+      path: /opt/kafka_2.13-3.4.0.tgz
+      state: absent
+
+  - name: Create symbolic link to /opt/kafka
+    ansible.builtin.file:
+      src: /opt/kafka_2.13-3.4.0
+      dest: /opt/kafka
+      state: link
+
+  - name: Create Apache Zookeeper systemd configuration
+    ansible.builtin.template:
+      src: templates/zookeeper.service.j2
+      dest: /etc/systemd/system/zookeeper.service
+
+  - name: Start Apache Zookeeper service
+    ansible.builtin.systemd:
+      name: zookeeper
+      state: started
+      daemon_reload: true
+
+  - name: Create Apache Kafka systemd configuration
+    ansible.builtin.template:
+      src: templates/kafka.service.j2
+      dest: /etc/systemd/system/kafka.service
+
+  - name: Start Apache Kafka service
+    ansible.builtin.systemd:
+      name: kafka
+      state: started
+      daemon_reload: true
+
+  - name: Verify Zookeeper Service Status
+    ansible.builtin.systemd:
+      name: 'zookeeper.service'
+    register: zookeeper_status
+
+  - debug:
+      var: zookeeper_status.status.ActiveState
+
+  - name: Verify Kafka Service Status
+    ansible.builtin.systemd:
+      name: 'kafka.service'
+    register: kafka_service
+
+  - debug:
+      var: kafka_service.status.ActiveState

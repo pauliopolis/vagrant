@@ -1,8 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby:
 
-BOX = "pauliopolis/rhel8"
-VERSION = "1.0.3"
+BOX = "generic/rhel8"
 NODES = 1
 RAM = 2048
 CPUS = 2
@@ -80,7 +79,6 @@ Vagrant.configure("2") do |config|
       end # node.vm.provider
 
       node.vm.box = BOX
-      node.vm.box = VERSION
       node.vm.hostname = "vm-node#{i}"
       node.vm.boot_timeout = 1500
       node.vm.synced_folder "../ansible", "/ansible"

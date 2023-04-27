@@ -4,7 +4,7 @@ ENV['VBOX_INSTALL_PATH'] = ENV['VBOX_MSI_INSTALL_PATH']
 
 BOX = "pauliopolis/rhel8"
 VERSION = "1.0.3"
-NODES = 1
+NODES = 3
 RAM = 2048
 CPUS = 2
 
@@ -58,11 +58,16 @@ Vagrant.configure("2") do |config|
         vga.compatibility_mode = "2.0"
       end # node.vm.provision
 
-
       node.vm.provision "cleanup", type: "ansible_local", run: "never" do |cleanup|
         cleanup.playbook = "/ansible/cleanup.yml"
         cleanup.verbose = false
         cleanup.compatibility_mode = "2.0"
+      end # node.vm.provision
+
+      node.vm.provision "kafka", type: "ansible_local", run: "never" do |kafka|
+        kafka.playbook = "/ansible/kafka.yml"
+        kafka.verbose = false
+        kafka.compatibility_mode = "2.0"
       end # node.vm.provision
 
       node.trigger.before :destroy do |unregister|
